@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7C3AED;
+  --color-primary-light: #8B5CF6;
+  --color-accent: #A855F7;
+  
+  --color-dark-bg: #070B1A;
+  --color-dark-surface: #0B1120;
+  --color-dark-border: #111827;
+
+  --color-light-bg: #F8FAFC;
+  --color-light-surface: #FFFFFF;
+
+  --font-sans: "Inter", "Satoshi", "Poppins", sans-serif;
+
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 8s ease-in-out infinite reverse;
+  --animate-pulse-glow: pulse-glow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-gradient: gradient-shift 8s ease infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.8; filter: blur(40px) brightness(1); }
+    50% { opacity: 1; filter: blur(60px) brightness(1.2); }
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-dark-bg);
+    color: white;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3)];
+  }
+  
+  .glass-card-light {
+    @apply bg-white/80 backdrop-blur-lg border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.04)];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-light to-accent;
+  }
+  
+  .text-gradient-white {
+    @apply bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60;
+  }
+
+  .bg-gradient-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(124, 58, 237, 0.15) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+  }
+}
